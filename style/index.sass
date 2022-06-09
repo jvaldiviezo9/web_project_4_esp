@@ -1,0 +1,67 @@
+* 
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+  background-color: black
+  color: white
+
+  $max_percentage: 90%
+  .page
+
+    width: Min($max_percentage, 880px)
+    // max-width: 880px
+    margin: 0 10%
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+  .header
+    border-bottom: 1px solid white
+    
+  .header__title
+    font-size: 2.5em
+    font-weight: bold
+    margin: 0 auto
+    padding: 0.5em 0
+
+  .profile
+    display: flex
+    justify-content: space-between
+
+  .profile__container
+    display: flex
+    align-content: center
+    align-items: center
+
+    margin-top: 36.5px
+
+  .profile__info
+    margin-left: 30px
+
+
+  .profile__picture
+    border-radius: 50%
+
+  .profile__edit
+    margin-left: 18px
+
+  .elements
+    margin-top: 50px
+
+  .elements__info
+    // https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
+
+    width: 282px
+    display: flex
+
+
+
+  .elements__text
+    // text-overflow: ellipsis
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+    
+
+
