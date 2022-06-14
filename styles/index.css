@@ -582,6 +582,8 @@ explicitly, e.g.
 
 .profile__picture {
   border-radius: 50%;
+  width: 128px;
+  height: 128px;
 }
 
 .profile__edit {
@@ -640,6 +642,8 @@ explicitly, e.g.
 
 .elements__info {
   display: flex;
+  background-color: white;
+  justify-content: space-between;
   width: 282px;
 }
 
@@ -657,6 +661,12 @@ explicitly, e.g.
   color: black;
   border: none;
   padding-right: 15px;
+}
+
+.elements__image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
 }
 
 .form {

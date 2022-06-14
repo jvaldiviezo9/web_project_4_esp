@@ -9,9 +9,7 @@
   grid-column-gap: 1%
 
   @media screen and (max-width: $breakpoint-medium)
-
     margin: 36px auto 0
-
 
 .elements__card
   width: 282px
@@ -21,11 +19,13 @@
   border-radius: 10px
 
 .elements__info
-
   // https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
-
   display: flex
+  background-color: white
+  justify-content: space-between
+
   width: 282px
+
 
 .elements__text
   // text-overflow: ellipsis
@@ -45,3 +45,10 @@
   border: none
 
   padding-right: 15px
+
+.elements__image
+
+  //ref: https://www.digitalocean.com/community/tutorials/css-cropping-images-object-fit
+  width: 282px
+  height: 282px
+  object-fit: cover
