@@ -25,7 +25,7 @@ function edit_profile(e) {
 
         edit_form.style.display = "none";
 
-    }, 175)
+    }, 225)
 
 }
 edit_form.addEventListener("submit", edit_profile)
