@@ -1,0 +1,57 @@
+@import "../../styles/constants"
+
+.profile
+
+  display: flex
+  justify-content: space-between
+  align-items: center
+  @media screen and (max-width: $breakpoint-medium)
+    flex-direction: column
+
+.profile__container
+  display: flex
+  align-content: center
+  align-items: center
+
+  margin-top: 36.5px
+
+  @media screen and (max-width: $breakpoint-medium)
+    flex-direction: column
+
+.profile__info
+  margin-left: 30px
+
+  @media screen and (max-width: $breakpoint-medium)
+    margin-top: 26.25px
+
+.profile__name
+  @media screen and (max-width: $breakpoint-medium)
+    margin-bottom: 14px
+
+.profile__picture
+  border-radius: 50%
+
+
+.profile__edit
+
+  margin-left: 18px
+
+  width: 24px
+  height: 24px
+  border: 1px solid white
+
+  background-image: url('/images/edit_button.png')
+  background-position: center
+  background-repeat: no-repeat
+
+  @media screen and (max-width: $breakpoint-medium)
+    flex-direction: column
+    transform: translate(110px, -58px)
+
+.profile__add
+  border: 2px solid white
+  width: 150px
+  height: 50px
+
+  @media screen and (max-width: $breakpoint-medium)
+    margin-top: 36px
