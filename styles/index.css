@@ -700,6 +700,7 @@ explicitly, e.g.
   border-bottom: 1px solid #545454;
   width: 358px;
   height: 40px;
+  margin-bottom: 29px;
 }
 
 .form__description {
@@ -732,6 +733,7 @@ explicitly, e.g.
   margin-top: 48px;
   width: 358px;
   height: 50px;
+  margin-bottom: 36px;
 }
 
 .footer {
