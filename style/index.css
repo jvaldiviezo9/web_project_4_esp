@@ -1,103 +1,79 @@
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   background-color: black;
   color: white;
 }
 
-* .page {
+.page {
   position: relative;
-  width: Min(90%, 880px);
-  margin: 0 10%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: min(90%, 880px);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media screen and (max-width: 622px) {
+  .page {
+    margin: 0 auto;
+  }
 }
 
-* .header {
+.header {
   border-bottom: 1px solid white;
 }
 
-* .header__title {
+.header__title {
   font-size: 2.5em;
   font-weight: bold;
   margin: 0 auto;
   padding: 0.5em 0;
 }
 
-* .profile {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.profile {
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
-
 @media screen and (max-width: 622px) {
-  * .profile {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  .profile {
+    flex-direction: column;
   }
 }
 
-* .profile__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.profile__container {
   display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-content: center;
+  align-items: center;
   margin-top: 36.5px;
 }
-
 @media screen and (max-width: 622px) {
-  * .profile__container {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  .profile__container {
+    flex-direction: column;
   }
 }
 
-* .profile__info {
+.profile__info {
   margin-left: 30px;
 }
-
 @media screen and (max-width: 622px) {
-  * .profile__info {
+  .profile__info {
     margin-top: 26.25px;
   }
 }
 
 @media screen and (max-width: 622px) {
-  * .profile__name {
+  .profile__name {
     margin-bottom: 14px;
   }
 }
 
-* .profile__picture {
+.profile__picture {
   border-radius: 50%;
 }
 
-* .profile__edit {
+.profile__edit {
   margin-left: 18px;
   width: 24px;
   height: 24px;
@@ -106,62 +82,51 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
 @media screen and (max-width: 622px) {
-  * .profile__edit {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-transform: translate(110px, -58px);
-            transform: translate(110px, -58px);
+  .profile__edit {
+    flex-direction: column;
+    transform: translate(110px, -58px);
   }
 }
 
-* .profile__add {
+.profile__add {
   border: 2px solid white;
   width: 150px;
   height: 50px;
 }
-
 @media screen and (max-width: 622px) {
-  * .profile__add {
+  .profile__add {
     margin-top: 36px;
   }
 }
 
-* .elements {
+.elements {
   margin-top: 50px;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(282px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
   grid-row-gap: 20px;
   grid-column-gap: 1%;
 }
-
 @media screen and (max-width: 622px) {
-  * .elements {
+  .elements {
     margin: 36px auto 0;
   }
 }
 
-* .elements__card {
+.elements__card {
   width: 282px;
   background-color: white;
   overflow: hidden;
   border-radius: 10px;
 }
 
-* .elements__info {
-  width: 282px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.elements__info {
   display: flex;
+  width: 282px;
 }
 
-* .elements__text {
-  padding: 21px 0px 21px 15px;
+.elements__text {
+  padding: 21px 0 21px 15px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -169,14 +134,14 @@
   color: black;
 }
 
-* .elements__like {
+.elements__like {
   background-color: white;
   color: black;
   border: none;
   padding-right: 15px;
 }
 
-* .form {
+.form {
   display: none;
   width: 430px;
   height: 330px;
@@ -185,32 +150,21 @@
   border-radius: 20px;
   top: 30%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7);
-          box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7);
 }
 
-* .form__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.form__container {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   color: black;
   border-radius: 20px;
 }
 
-* .form__name {
+.form__name {
   background-color: white;
   color: black;
   border: 0;
@@ -220,7 +174,7 @@
   height: 40px;
 }
 
-* .form__description {
+.form__description {
   background-color: white;
   color: black;
   border: 0;
@@ -230,7 +184,7 @@
   height: 40px;
 }
 
-* .form__title {
+.form__title {
   color: black;
   background-color: white;
   font-size: 24px;
@@ -240,20 +194,21 @@
   margin-bottom: 54px;
 }
 
-* .form__close-button {
+.form__close-button {
   position: absolute;
   top: -38px;
   right: -38px;
 }
 
-* .form__submit {
+.form__submit {
   margin-top: 48px;
   width: 358px;
   height: 50px;
 }
 
-* .footer {
+.footer {
   margin-top: 98px;
   margin-bottom: 60px;
 }
+
 /*# sourceMappingURL=index.css.map */
