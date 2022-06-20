@@ -50,6 +50,7 @@
   background-image: url("/images/edit_button.png");
   background-position: center;
   background-repeat: no-repeat;
+  transition: 0.3s;
 }
 @media screen and (max-width: 707px) {
   .profile__edit {
@@ -65,15 +66,26 @@
   }
 }
 
+.profile__edit:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 .profile__add {
   border: 2px solid white;
   width: 150px;
   height: 50px;
+  transition: 0.3s;
 }
 @media screen and (max-width: 622px) {
   .profile__add {
     margin-top: 36px;
   }
+}
+
+.profile__add:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=profile.css.map */

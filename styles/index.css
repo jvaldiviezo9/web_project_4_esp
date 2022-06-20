@@ -594,6 +594,7 @@ explicitly, e.g.
   background-image: url("/images/edit_button.png");
   background-position: center;
   background-repeat: no-repeat;
+  transition: 0.3s;
 }
 @media screen and (max-width: 707px) {
   .profile__edit {
@@ -609,15 +610,26 @@ explicitly, e.g.
   }
 }
 
+.profile__edit:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 .profile__add {
   border: 2px solid white;
   width: 150px;
   height: 50px;
+  transition: 0.3s;
 }
 @media screen and (max-width: 622px) {
   .profile__add {
     margin-top: 36px;
   }
+}
+
+.profile__add:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .elements {
@@ -661,6 +673,21 @@ explicitly, e.g.
   color: black;
   border: none;
   padding-right: 15px;
+  cursor: pointer;
+}
+
+.elements__icon {
+  background-color: white;
+  border: none;
+  z-index: 1;
+}
+
+.elements__icon_status_hover {
+  background-image: url("../../images/like/like_hover.png");
+}
+
+.elements__icon_status_active {
+  background-image: url("../../images/like/like_active.png");
 }
 
 .elements__image {
@@ -727,6 +754,12 @@ explicitly, e.g.
   position: absolute;
   top: -38px;
   right: -38px;
+  transition: 0.3s;
+}
+
+.form__close-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .form__submit {
@@ -734,6 +767,12 @@ explicitly, e.g.
   width: 358px;
   height: 50px;
   margin-bottom: 36px;
+  transition: 0.3s;
+}
+
+.form__submit:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .footer {
