@@ -7,42 +7,72 @@ let card_container = document.querySelector(".elements");
 
 // initial render of cards
 const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-    name: "Lago Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
+    {
+        name: "Valle de Yosemite",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lago Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Montañas Calvas",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Parque Nacional de la Vanoise",
+        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    },
+    {
+        name: "Chichén Itzá",
+        link: "images/elements/chichenitza.jpg"
+    },
+
+    {
+        name: "Monte Albán",
+        link: "images/elements/montealban.jpg"
+    },
+
+    {
+        name: "Palenque",
+        link: "images/elements/palenque.jpg"
+    },
+
+    {
+        name: "Tulum",
+        link: "images/elements/tulum.jpg"
+    },
+
+    {
+        name: "Cenote Dos Ojos",
+        link: "images/elements/cenote%20dos%20ojos.jpg"
+    },
+
+    {
+        name: "Barrancas del cobre",
+        link: "images/elements/barrancas%20del%20cobre.jpg"
+    }
+
 ];
 
 
 // initialize cards
-initialCards.forEach(function(item){
+initialCards.forEach(function (item) {
 
     console.log(item.link, item.name)
     addCard(item)
 
 })
 
-function addCard(card_info){
+function addCard(card_info) {
 
     let card = card_template.cloneNode(true);
 
@@ -55,7 +85,7 @@ function addCard(card_info){
 
 }
 
-function removeCard(element){
+function removeCard(element) {
 
     let card = element.closest(".elements__card");
     card.remove();
