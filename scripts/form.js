@@ -1,30 +1,79 @@
-let profile_info = document.querySelector(".profile__info");
-let edit_button = document.querySelector(".profile__edit");
-let edit_form = document.querySelector(".form");
-let close_button = document.querySelector(".form__close-button");
-
-
-close_button.addEventListener("click", function() {
-    edit_form.style.display = "none";
-})
-
-edit_button.addEventListener("click", function() {
-    edit_form.style.display = "block";
-})
-
 function edit_profile(e) {
 
-    e.preventDefault();
+    let profile_info = document.querySelector(".profile__info");
+
+    e.preventDefault()
 
     profile_info.querySelector(".profile__name").textContent = e.target.elements.form__name.value
-
     profile_info.querySelector(".profile__description").textContent = e.target.elements.form__description.value
 
-    setTimeout(function() {
+    closeForm()
+
+}
+
+function openForm(kind="profile") {
+
+    let form = form_template.cloneNode(true);
+
+    if (kind === "profile") {
+
+        form.querySelector(".form__title").textContent = "Edit profile"
+
+        form.querySelector(".form__name").textContent = ""
+        form.querySelector(".form__name").placeholder = "Name"
+
+        form.querySelector(".form__description").textContent = ""
+        form.querySelector(".form__description").placeholder = "Description"
+
+        document.querySelector(".page").appendChild(form);
+
+        // add event to modify the profile
+        let edit_form = document.querySelector(".form");
+        edit_form.addEventListener("submit", edit_profile)
+
+        edit_form.style.display = "block";
+
+
+    }else{
+
+        form.querySelector(".form__title").textContent = "New place"
+
+        form.querySelector(".form__name").textContent = ""
+        form.querySelector(".form__name").placeholder = "Name"
+
+        form.querySelector(".form__description").textContent = ""
+        form.querySelector(".form__description").placeholder = "URL"
+
+        document.querySelector(".page").appendChild(form);
+        let edit_form = document.querySelector(".form");
+        edit_form.addEventListener("submit", edit_profile)
+
+        edit_form.style.display = "block";
+
+    }
+
+    let close_button = document.querySelector(".form__close-button");
+    close_button.addEventListener("click", closeForm)
+
+}
+
+function closeForm() {
+    let edit_form = document.querySelector(".form");
+    setTimeout(function () {
 
         edit_form.style.display = "none";
+        edit_form.remove()
 
     }, 225)
 
 }
-edit_form.addEventListener("submit", edit_profile)
+
+document.querySelector(".profile__edit").addEventListener("click", function () {
+
+    openForm()
+})
+
+document.querySelector(".profile__add").addEventListener("click", function () {
+
+    openForm("card")
+})
