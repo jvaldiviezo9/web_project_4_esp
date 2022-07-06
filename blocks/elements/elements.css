@@ -12,10 +12,27 @@
 }
 
 .elements__card {
+  position: relative;
   width: 282px;
   background-color: white;
   overflow: hidden;
   border-radius: 10px;
+}
+
+.elements__trash {
+  position: absolute;
+  background: transparent;
+  filter: brightness(1) invert(1);
+  right: 0;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.elements__trash:hover {
+  opacity: 0.5;
 }
 
 .elements__info {
@@ -60,6 +77,32 @@
   width: 282px;
   height: 282px;
   object-fit: cover;
+}
+
+.elements__image:hover {
+  cursor: pointer;
+}
+
+.elements__zoom {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7);
+}
+
+.elements__zoom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.elements__zoom-button {
+  position: absolute;
+  top: -38px;
+  right: -38px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=elements.css.map */

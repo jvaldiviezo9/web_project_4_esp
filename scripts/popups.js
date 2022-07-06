@@ -1,6 +1,24 @@
+// big popup image
+document.querySelector(".elements__zoom-button").addEventListener("click", function () {
+    document.querySelector(".elements__zoom").style.display = "none";
+})
+
+
+
 function form_edit_profile(e) {
 
     let profile_info = document.querySelector(".profile__info");
+
+    e.preventDefault()
+
+    profile_info.querySelector(".profile__name").textContent = e.target.elements.form__name.value
+    profile_info.querySelector(".profile__description").textContent = e.target.elements.form__description.value
+
+    closeForm()
+
+}
+
+function form_add_place(e) {
 
     e.preventDefault()
 
@@ -10,19 +28,6 @@ function form_edit_profile(e) {
     card_info.link = e.target.elements.form__description.value
 
     addCard(card_info)
-
-    closeForm()
-
-}
-
-function form_add_place(e) {
-
-    let profile_info = document.querySelector(".profile__info");
-
-    e.preventDefault()
-
-    profile_info.querySelector(".profile__name").textContent = e.target.elements.form__name.value
-    profile_info.querySelector(".profile__description").textContent = e.target.elements.form__description.value
 
     closeForm()
 
@@ -63,7 +68,7 @@ function openForm(kind="profile") {
 
         document.querySelector(".page").appendChild(form);
         let edit_form = document.querySelector(".form");
-        edit_form.addEventListener("submit", form_edit_profile)
+        edit_form.addEventListener("submit", form_add_place)
 
         edit_form.style.display = "block";
 
@@ -94,3 +99,5 @@ document.querySelector(".profile__add").addEventListener("click", function () {
 
     openForm("card")
 })
+
+

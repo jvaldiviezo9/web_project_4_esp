@@ -25,6 +25,17 @@ document.querySelector(".elements").addEventListener("click", function(e) {
                 e.target.src = "images/like/like_hover.png"
             }
         }
+
+        if (e.target.className === "elements__image") {
+            document.querySelector(".elements__zoom").style.display = "block";
+            document.querySelector(".elements__zoom-image").src = e.target.src;
+        }
+
+        if (e.target.className === "elements__trash") {
+
+            removeCard(e.target)
+        }
+
     }
 )
 

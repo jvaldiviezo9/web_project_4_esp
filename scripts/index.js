@@ -55,6 +55,9 @@ function addCard(card_info){
 
 }
 
-function removeCard(){
+function removeCard(element){
+
+    let card = element.closest(".elements__card");
+    card.remove();
 
 }
