@@ -1,4 +1,21 @@
-function edit_profile(e) {
+function form_edit_profile(e) {
+
+    let profile_info = document.querySelector(".profile__info");
+
+    e.preventDefault()
+
+    card_info = {}
+
+    card_info.name = e.target.elements.form__name.value
+    card_info.link = e.target.elements.form__description.value
+
+    addCard(card_info)
+
+    closeForm()
+
+}
+
+function form_add_place(e) {
 
     let profile_info = document.querySelector(".profile__info");
 
@@ -29,7 +46,7 @@ function openForm(kind="profile") {
 
         // add event to modify the profile
         let edit_form = document.querySelector(".form");
-        edit_form.addEventListener("submit", edit_profile)
+        edit_form.addEventListener("submit", form_edit_profile)
 
         edit_form.style.display = "block";
 
@@ -46,7 +63,7 @@ function openForm(kind="profile") {
 
         document.querySelector(".page").appendChild(form);
         let edit_form = document.querySelector(".form");
-        edit_form.addEventListener("submit", edit_profile)
+        edit_form.addEventListener("submit", form_edit_profile)
 
         edit_form.style.display = "block";
 
