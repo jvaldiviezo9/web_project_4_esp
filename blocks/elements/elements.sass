@@ -40,8 +40,6 @@
   opacity: .5
 
 
-
-
 .elements__info
   // https://stackoverflow.com/questions/36652580/how-to-add-three-dots-to-text-when-overflow-in-html
   display: flex
@@ -92,9 +90,19 @@
 .elements__image:hover
   cursor: pointer
 
+
+// to add the fade-in fade-out animations, we need
+// to play a little bit with the display options
 .elements__zoom
 
-  display: none
+  // the property display none is added in the
+  // js code
+
+  //display: none
+  visibility: hidden
+  opacity: 0
+  transition: visibility 0s, opacity .5s linear
+
   position: fixed
 
   left: 50%
@@ -102,6 +110,11 @@
 
   transform: translate(-50%, -50%)
   box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7)
+
+
+.elements__image_active
+  visibility: visible
+  opacity: 1
 
 
 .elements__zoom-image

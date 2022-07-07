@@ -27,8 +27,16 @@ document.querySelector(".elements").addEventListener("click", function(e) {
         }
 
         if (e.target.className === "elements__image") {
+
+
+
             document.querySelector(".elements__zoom").style.display = "block";
             document.querySelector(".elements__zoom-image").src = e.target.src;
+
+            setTimeout(function () {
+                document.querySelector(".elements__zoom").classList.add("elements__image_active")
+            }, 100)
+
         }
 
         if (e.target.className === "elements__trash") {
@@ -38,4 +46,19 @@ document.querySelector(".elements").addEventListener("click", function(e) {
 
     }
 )
+
+// big popup image
+document.querySelector(".elements__zoom-button").addEventListener("click", function () {
+
+    const zoomBlock = document.querySelector(".elements__zoom")
+    zoomBlock.style.visibility = "visible"
+
+    setTimeout(function () {
+        zoomBlock.classList.remove("elements__image_active")
+        setTimeout(function () {
+            zoomBlock.style.display = "none"
+        }, 500)
+    }, 100)
+
+})
 

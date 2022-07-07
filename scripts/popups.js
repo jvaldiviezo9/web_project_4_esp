@@ -1,7 +1,4 @@
-// big popup image
-document.querySelector(".elements__zoom-button").addEventListener("click", function () {
-    document.querySelector(".elements__zoom").style.display = "none";
-})
+
 
 
 
@@ -67,19 +64,26 @@ function openForm(kind="profile") {
     form.addEventListener("submit", source.function)
     form.querySelector(".form__close-button").addEventListener("click", closeForm)
 
-    form.style.display = "block";
+    form.style.visibility = "visible"
+
+    setTimeout(function () {
+        form.classList.add("form_active")
+        },100
+    )
+
     document.querySelector(".page").appendChild(form);
 
 }
 
 function closeForm() {
     let edit_form = document.querySelector(".form");
+    edit_form.classList.remove("form_active")
+
     setTimeout(function () {
 
-        edit_form.style.display = "none";
         edit_form.remove()
 
-    }, 225)
+    }, 500)
 
 }
 

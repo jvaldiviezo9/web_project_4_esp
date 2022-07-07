@@ -1,5 +1,7 @@
 .form {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
   width: 430px;
   height: 330px;
   background-color: white;
@@ -9,6 +11,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7);
+}
+
+.form_active {
+  visibility: visible;
+  opacity: 1;
 }
 
 .form__container {

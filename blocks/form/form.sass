@@ -1,7 +1,16 @@
 @import "../../styles/constants"
 
+// note: to properly do the fade-in and fade-out transitions
+// we need to add visibility as well on the js side.
+// also add a class with a timeout event and remove the class with
+// the same method as well. In the case of this form
+// the added/removed class is form_active
+
 .form
-  display: none
+
+  visibility: hidden
+  opacity: 0
+  transition: visibility 0s, opacity .5s linear
 
   width: 430px
   height: 330px
@@ -13,6 +22,11 @@
   left: 50%
   transform: translate(-50%, -50%)
   box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7)
+
+.form_active
+    visibility: visible
+    opacity: 1
+
 
 .form__container
   display: flex
