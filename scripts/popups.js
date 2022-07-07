@@ -33,49 +33,42 @@ function form_add_place(e) {
 
 }
 
+// reuse function to add the input forms, for a new card and for a new place.
 function openForm(kind="profile") {
 
     let form = form_template.cloneNode(true);
 
-    if (kind === "profile") {
+    database = {
+        "profile": {
+            "title": "Edit profile",
+            "name": "Name",
+            "description": "Description",
+            "function" : form_edit_profile
 
-        form.querySelector(".form__title").textContent = "Edit profile"
-
-        form.querySelector(".form__name").textContent = ""
-        form.querySelector(".form__name").placeholder = "Name"
-
-        form.querySelector(".form__description").textContent = ""
-        form.querySelector(".form__description").placeholder = "Description"
-
-        document.querySelector(".page").appendChild(form);
-
-        // add event to modify the profile
-        let edit_form = document.querySelector(".form");
-        edit_form.addEventListener("submit", form_edit_profile)
-
-        edit_form.style.display = "block";
-
-
-    }else{
-
-        form.querySelector(".form__title").textContent = "New place"
-
-        form.querySelector(".form__name").textContent = ""
-        form.querySelector(".form__name").placeholder = "Name"
-
-        form.querySelector(".form__description").textContent = ""
-        form.querySelector(".form__description").placeholder = "URL"
-
-        document.querySelector(".page").appendChild(form);
-        let edit_form = document.querySelector(".form");
-        edit_form.addEventListener("submit", form_add_place)
-
-        edit_form.style.display = "block";
-
+        },
+        "card": {
+            "title": "Add Place",
+            "name": "Place",
+            "description": "URL",
+            "function" : form_add_place
+        }
     }
 
-    let close_button = document.querySelector(".form__close-button");
-    close_button.addEventListener("click", closeForm)
+    const source = database[kind]
+
+    form.querySelector(".form__title").textContent = source.title
+
+    form.querySelector(".form__name").textContent = ""
+    form.querySelector(".form__name").placeholder = source.name
+
+    form.querySelector(".form__description").textContent = ""
+    form.querySelector(".form__description").placeholder = source.description
+
+    form.addEventListener("submit", source.function)
+    form.querySelector(".form__close-button").addEventListener("click", closeForm)
+
+    form.style.display = "block";
+    document.querySelector(".page").appendChild(form);
 
 }
 
