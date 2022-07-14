@@ -40,14 +40,35 @@ function openForm(kind="profile") {
             "title": "Edit profile",
             "name": "Name",
             "description": "Description",
-            "function" : form_edit_profile
+            "function" : form_edit_profile,
+            "errorValidation" : {
+                "form__name" : {
+                    "minlength" : 2,
+                    "maxlength" : 40,
+                },
+                "form__description" : {
+                    "minlength" : 2,
+                    "maxlength" : 200,
+                }
+            }
 
         },
         "card": {
             "title": "Add Place",
             "name": "Place",
             "description": "URL",
-            "function" : form_add_place
+            "function" : form_add_place,
+            "errorValidation" : {
+                "form__name" : {
+                    "minlength" : 2,
+                    "maxlength" : 40,
+                },
+                "form__description" : {
+                    "minlength" : 2,
+                    "type" : "url",
+                    "pattern" : "https?://.+"
+                }
+            }
         }
     }
 
@@ -64,6 +85,9 @@ function openForm(kind="profile") {
     form.addEventListener("submit", source.function)
     form.querySelector(".form__close-button").addEventListener("click", closeForm)
 
+
+    // add validations to the for
+
     form.style.visibility = "visible"
 
     setTimeout(function () {
@@ -72,6 +96,8 @@ function openForm(kind="profile") {
     )
 
     document.querySelector(".page").appendChild(form);
+
+    formSetEvents(source)
 
 }
 

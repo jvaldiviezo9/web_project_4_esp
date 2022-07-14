@@ -12,9 +12,6 @@
   opacity: 0
   transition: visibility 0s, opacity .5s linear
 
-  width: 430px
-  height: 330px
-
   background-color: white
   position: fixed
   border-radius: 20px
@@ -27,34 +24,17 @@
     visibility: visible
     opacity: 1
 
-
 .form__container
   display: flex
   flex-direction: column
-  justify-content: center
+  //justify-content: center
   align-items: center
   background-color: white
   color: black
   border-radius: 20px
 
-.form__name
-  background-color: white
-  color: black
-  border: 0
-  outline: 0
-  border-bottom: 1px solid #545454
-  width: 358px
-  height: 40px
-  margin-bottom: 29px
-
-.form__description
-  background-color: white
-  color: black
-  border: 0
-  outline: 0
-  border-bottom: 1px solid #545454
-  width: 358px
-  height: 40px
+  width: 430px
+  height: 330px
 
 
 .form__title
@@ -64,7 +44,7 @@
   font-weight: bold
   width: 358px
   margin-top: 34px
-  margin-bottom: 54px
+  margin-bottom: 34px
 
 .form__close-button
   position: absolute
@@ -76,14 +56,50 @@
   cursor: pointer
   opacity: .5
 
+
+// form inputs
+
+.form__name
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form__name:hover
+  border-bottom: 1px solid #0f7add
+
+
+.form__description
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form__description:hover
+  border-bottom: 1px solid #0f7add
+
 .form__submit
-  margin-top: 48px
+  position: absolute
   width: 358px
   height: 50px
-  margin-bottom: 36px
+  bottom: 36px
   transition: 0.3s
 
 .form__submit:hover
   cursor: pointer
   opacity: .5
+
+
+.form__error
+  position: relative
+  margin-top: 5px
+  margin-bottom: 5px
+  //visibility: hidden
+
 

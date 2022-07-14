@@ -128,7 +128,6 @@
 
     </footer>
 
-
   </div>
 
   <template>
@@ -155,12 +154,14 @@
 
       <img class="form__close-button" src="images/close_icon.png" alt="close button">
 
-      <form class="form__container">
+      <form class="form__container" novalidate>
         <h2 class="form__title"></h2>
 
-        <input class="form__name" id="form__name" type="text" placeholder="">
+        <input class="form__name" id="form__name" type="text" placeholder="" required>
+        <span class="form__name-error form__error">field__name</span>
 
-        <input class="form__description" id="form__description" type="text" placeholder="">
+        <input class="form__description" id="form__description" type="text" placeholder="" required>
+        <span class="form__description-error form__error">field__description</span>
 
         <button class="form__submit" type="submit">
           Save
@@ -176,6 +177,7 @@
   <script src="scripts/index.js"></script>
   <script src="scripts/popups.js"></script>
   <script src="scripts/card_events.js"></script>
+  <script src="scripts/validation.js"></script>
 
 </body>
 
