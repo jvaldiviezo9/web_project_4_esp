@@ -838,6 +838,18 @@ explicitly, e.g.
   opacity: 0.5;
 }
 
+.form__submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.18;
+  border: 2px solid gray;
+}
+
+.form__submit:disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.25;
+  border: 2px solid gray;
+}
+
 .form__error {
   position: relative;
   margin-top: 5px;

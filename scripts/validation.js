@@ -26,11 +26,30 @@ function formSetEvents(source){
             errorSpan.textContent = input.validationMessage
 
         })
-
     })
 
     form.addEventListener("submit", e => {
         e.preventDefault()
+    })
+
+    form.addEventListener("input", e => {
+
+        const submitButton = form.querySelector(".form__submit")
+        const formInputs = Array.from(form.elements).filter((input) => input.type !== "submit")
+
+        const checkValidity = !formInputs.some(input => {
+            if(!input.validity.valid){
+                return true
+            }
+        })
+
+        // if checkValidity is true the entire form is valid
+        // so the button is activated
+
+        // console.log(checkValidity)
+        submitButton.disabled = !checkValidity
+
+
     })
 }
 
