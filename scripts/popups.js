@@ -1,7 +1,4 @@
 
-
-
-
 function form_edit_profile(e) {
 
     let profile_info = document.querySelector(".profile__info");
@@ -83,6 +80,9 @@ function openForm(kind="profile") {
     form.querySelector(".form__description").placeholder = source.description
 
     form.addEventListener("submit", source.function)
+
+
+
     form.querySelector(".form__close-button").addEventListener("click", closeForm)
 
 
@@ -92,13 +92,28 @@ function openForm(kind="profile") {
 
     setTimeout(function () {
         form.classList.add("form_active")
+        document.addEventListener("click", formClickOutside)
         },100
     )
 
     document.querySelector(".page").appendChild(form);
 
-    formSetEvents(source)
+    enableValidation(source)
 
+}
+
+function formClickOutside(e) {
+    // click outside the form
+    // ref: https://stackoverflow.com/questions/152975/how-do-i-detect-a-click-outside-an-element
+
+        const forms = document.forms
+        if (forms.length > 0) {
+            const insideForm = e.composedPath().includes(forms[0])
+
+            if (!insideForm) {
+                closeForm()
+            }
+        }
 }
 
 function closeForm() {
@@ -108,7 +123,7 @@ function closeForm() {
     setTimeout(function () {
 
         edit_form.remove()
-
+        document.removeEventListener("click", formClickOutside)
     }, 500)
 
 }

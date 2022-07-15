@@ -34,7 +34,7 @@
   border-radius: 20px
 
   width: 430px
-  height: 330px
+  min-height: 330px
 
 
 .form__title
@@ -88,7 +88,7 @@
   position: absolute
   width: 358px
   height: 50px
-  bottom: 36px
+  bottom: 30px
   transition: 0.3s
 
 .form__submit:hover
@@ -109,6 +109,21 @@
   position: relative
   margin-top: 5px
   margin-bottom: 5px
+  //self flex align to left
+
+  align-self: flex-start
+  margin-left: 36px
+
+  background-color: white
+  color: white
+
+.form__error-active
+
+  background-color: white
+  color: red
+
+
+
   //visibility: hidden
 
 

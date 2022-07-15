@@ -1,6 +1,7 @@
 // the form is active
 
-function formSetEvents(source){
+
+function enableValidation(source){
     // function to apply the input events
     // to all the fields in the form
 
@@ -23,7 +24,15 @@ function formSetEvents(source){
         input.addEventListener("input", e => {
 
             let errorSpan = document.forms[0].querySelector(`.${input.id}-error`)
-            errorSpan.textContent = input.validationMessage
+
+            errorSpan.textContent = input.validationMessage.split("(")[0]
+
+            if (input.validationMessage === "") {
+                errorSpan.textContent = "Ok"
+                errorSpan.classList.remove("form__error-active")
+            }else{
+                errorSpan.classList.add("form__error-active")
+            }
 
         })
     })
@@ -52,5 +61,3 @@ function formSetEvents(source){
 
     })
 }
-
-
