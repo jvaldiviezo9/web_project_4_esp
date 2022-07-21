@@ -121,6 +121,7 @@ class Form {
     }
 
     static _closeForm() {
+
         let edit_form = document.querySelector(".form");
         edit_form.classList.remove("form_active")
 
