@@ -1,6 +1,5 @@
 // load template files
 let template = document.querySelector("template").content;
-let form_template = template.querySelector(".form");
 
 class Card {
 
@@ -73,7 +72,7 @@ class Card {
     }
 
     // functions related to the zoom image cointainer.
-    static zoomImageFunctions = {
+    static _zoomFunctions = {
 
         imageClickOutside : function (e) {
             // click outside the form
@@ -83,7 +82,7 @@ class Card {
             const insideImage = e.composedPath().includes(zoomBlock)
 
             if (!insideImage) {
-                Card.zoomImageFunctions.closeImage()
+                Card._zoomFunctions.closeImage()
             }
 
         },
@@ -97,7 +96,7 @@ class Card {
                 zoomBlock.classList.remove("elements__image_active")
                 setTimeout(function () {
                     zoomBlock.style.display = "none"
-                    document.removeEventListener("click", Card.zoomImageFunctions.imageClickOutside)
+                    document.removeEventListener("click", Card._zoomFunctions.imageClickOutside)
                 }, 500)
             }, 100)
         }
@@ -142,7 +141,7 @@ class Card {
 
                     setTimeout(function () {
                         document.querySelector(".elements__zoom").classList.add("elements__image_active")
-                        document.addEventListener("click", Card.zoomImageFunctions.imageClickOutside)
+                        document.addEventListener("click", Card._zoomFunctions.imageClickOutside)
                     }, 100)
 
                 }
@@ -158,7 +157,7 @@ class Card {
 
         // big popup image
         document.querySelector(".elements__zoom-button").addEventListener(
-            "click", Card.zoomImageFunctions.closeImage)
+            "click", Card._zoomFunctions.closeImage)
 
 
         document.addEventListener("keydown", function (e) {
@@ -166,11 +165,11 @@ class Card {
             if (e.keyCode === 27) {
 
                 if (document.querySelector(".elements__zoom").style.display === "block") {
-                    closeImage()
+                    Card._zoomFunctions.closeImage()
                 }
 
                 if (document.querySelector(".form")) {
-                    closeForm()
+                    Form._closeForm()
                 }
 
             }
@@ -190,6 +189,7 @@ class Card {
         this._card.querySelector(".elements__image").alt = card_info.name.replace(/\s/g, "_");
 
     }
+
     static renderCards() {
 
         // initialize cards
