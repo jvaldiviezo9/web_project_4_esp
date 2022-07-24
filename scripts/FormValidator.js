@@ -1,6 +1,6 @@
 // the form is active
 
-class FormValidator {
+export default class FormValidator {
 
     constructor(form, source) {
 
