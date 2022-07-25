@@ -1,6 +1,5 @@
 let template = document.querySelector("template").content;
 
-
 function setKeyboardEvents() {
     document.addEventListener("keydown", function (e) {
 

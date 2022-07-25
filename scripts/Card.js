@@ -1,9 +1,6 @@
 import {template} from "./utils.js";
 
-export default class Card {
-
-    // initial render of cards
-    static initialCards = [
+const initialCards = [
         {
             name: "Valle de Yosemite",
             link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
@@ -59,6 +56,11 @@ export default class Card {
         }
 
     ]
+
+
+export default class Card {
+
+    // initial render of cards
 
     static card_container = document.querySelector(".elements");
     static card_template = template.querySelector(".elements__card");
@@ -173,7 +175,7 @@ export default class Card {
     static renderCards() {
 
         // initialize cards
-        Card.initialCards.forEach(function (item) {
+        initialCards.forEach(function (item) {
 
             // console.log(item.link, item.name)
 
@@ -196,9 +198,6 @@ export default class Card {
         Card.card_container.prepend(this._card)
 
     }
-
-
-
 
 }
 
