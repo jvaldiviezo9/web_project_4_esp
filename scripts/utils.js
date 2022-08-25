@@ -18,5 +18,4 @@ function setKeyboardEvents() {
     })
 }
 
-
 export {template, setKeyboardEvents}

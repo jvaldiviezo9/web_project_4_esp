@@ -57,7 +57,6 @@ const initialCards = [
 
     ]
 
-
 export default class Card {
 
     // initial render of cards
@@ -188,7 +187,10 @@ export default class Card {
     }
 
     static initCards() {
+        //
         Card.renderCards()
+        // all the cards have been added
+        // this adds the events listeners to the cards
         Card.setEvents()
     }
 
