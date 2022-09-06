@@ -1,0 +1,38 @@
+// to add the fade-in fade-out animations, we need
+// to play a little bit with the display options
+.zoom
+
+  // the property display none is added in the
+  // js code
+
+  //display: none
+  visibility: hidden
+  opacity: 0
+  transition: visibility 0s, opacity .5s linear
+
+  position: fixed
+
+  left: 50%
+  top: 50vh
+
+  transform: translate(-50%, -50%)
+  box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7)
+
+
+.zoom__image_active
+  visibility: visible
+  opacity: 1
+
+
+.zoom__image
+  width: 100%
+  height: 100%
+  object-fit: contain
+
+
+.zoom__button
+  position: absolute
+  top: -38px
+  right: -38px
+
+  cursor: pointer

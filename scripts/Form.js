@@ -1,47 +1,38 @@
 
-import * as utils from "./utils.js";
+import * as utils from "./utils.js"
+import FormValidator from "./FormValidator.js"
+import Card from "./Card.js"
+
 
 export default class Form {
 
+
+    constructor(config, templateID) {
+        this._config = config
+        this._templateID = templateID
+
+    }
+
     // master configuration object
     // this is used to control the entire behaviour of the forms
-    static form_template = utils.template.querySelector(".form");
-    static database = {
-        "profile": {
-            "title": "Edit profile",
-            "name": "Name",
-            "description": "Description",
-            "function": Form._form_edit_profile,
-            "errorValidation": {
-                "form__name": {
-                    "minlength": 2,
-                    "maxlength": 40,
-                },
-                "form__description": {
-                    "minlength": 2,
-                    "maxlength": 200,
-                }
-            }
 
-        },
-        "card": {
-            "title": "Add Place",
-            "name": "Place",
-            "description": "URL",
-            "function": Form._form_add_place,
-            "errorValidation": {
-                "form__name": {
-                    "minlength": 2,
-                    "maxlength": 40,
-                },
-                "form__description": {
-                    "minlength": 2,
-                    "type": "url",
-                    "pattern": "https?://.+"
-                }
-            }
-        }
+    _getTemplate() {
+        return document.querySelector(this._templateID).content.querySelector(".form");
     }
+
+    static addEvents() {
+
+        document.querySelector(".profile__edit").addEventListener("click", function () {
+
+            Form._openForm()
+        })
+
+        document.querySelector(".profile__add").addEventListener("click", function () {
+
+            Form._openForm("card")
+        })
+    }
+
 
     static _form_edit_profile(e) {
 
@@ -65,6 +56,7 @@ export default class Form {
         card_info.name = e.target.elements.form__name.value
         card_info.link = e.target.elements.form__description.value
 
+        // todo: replace with section
         new Card(card_info).addCard()
 
         Form._closeForm()
@@ -76,7 +68,7 @@ export default class Form {
 
         let form = Form.form_template.cloneNode(true);
 
-        const source = Form.database[kind]
+        const source = this._config[kind]
 
         form.querySelector(".form__title").textContent = source.title
 
@@ -108,6 +100,8 @@ export default class Form {
 
     }
 
+
+    // function to hide the modal once it's clicked outside
     static _formClickOutside(e) {
         // click outside the form
         // ref: https://stackoverflow.com/questions/152975/how-do-i-detect-a-click-outside-an-element
@@ -122,6 +116,7 @@ export default class Form {
         }
     }
 
+    // remove the form from the DOM
     static _closeForm() {
 
         let edit_form = document.querySelector(".form");
@@ -135,18 +130,6 @@ export default class Form {
 
     }
 
-    static addEvents() {
-
-        document.querySelector(".profile__edit").addEventListener("click", function () {
-
-            Form._openForm()
-        })
-
-        document.querySelector(".profile__add").addEventListener("click", function () {
-
-            Form._openForm("card")
-        })
-    }
 }
 
-utils.setKeyboardEvents();
+

@@ -10,15 +10,19 @@ export default class Section{
 
     }
 
+    clear() {
+        this._container.innerHTML = ""
+    }
+
     renderer() {
         // this works to render all the items in the section
         this._items.forEach(item => {
-            this._renderer(item, this._container)
+            this._renderer(item)
         })
     }
 
     addItem(item) {
-        this._items.push(item)
+        this._container.prepend(item)
     }
 
 }
