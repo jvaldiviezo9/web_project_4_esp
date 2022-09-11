@@ -4,9 +4,17 @@ import {template} from "./utils.js";
 // this class only worry will be to store and generate a card object
 export default class Card {
 
+    constructor(cardInfo, templateClass) {
+
+        this._templateClass = templateClass
+        this._image = cardInfo.link
+        this._name = cardInfo.name
+
+    }
+
     // initial render of cards
 
-    static removeCard(element) {
+    static RemoveCard(element) {
 
         let card = element.closest(".elements__card");
         card.remove();
@@ -72,36 +80,14 @@ export default class Card {
                     }
                 }
 
-                // if (e.target.className === "elements__image") {
-                //
-                //     document.querySelector(".zoom").style.display = "block";
-                //     document.querySelector(".zoom__image").src = e.target.src;
-                //
-                //     setTimeout(function () {
-                //         document.querySelector(".zoom").classList.add("zoom__image_active")
-                //         document.addEventListener("click", Card._zoomFunctions.imageClickOutside)
-                //     }, 100)
-                //
-                // }
-
-
                 if (e.target.className === "elements__trash") {
-
-                    Card.removeCard(e.target)
+                    Card.RemoveCard(e.target)
                 }
 
             }
         )
-
     }
 
-    constructor(cardInfo, templateClass) {
-
-        this._templateClass = templateClass
-        this._image = cardInfo.link
-        this._name = cardInfo.name
-
-    }
 
     _getTemplate() {
 

@@ -1,15 +1,15 @@
 export class Popup{
 
-    constructor(container) {
-        this._container = container
+    constructor(containerClass) {
+        this._container = containerClass
         this._element = null
 
         // these are placeholders
         // to move the function
         // around the methods
         // inside the class
-        this._outClickFunct= null
-        this._escFunct = null
+        this._outClickFunct= this._handleOutClick.bind(this)
+        this._escFunct = this._handleEscClose.bind(this)
     }
 
     _getTemplate() {
@@ -45,6 +45,9 @@ export class Popup{
             }, 100)
 
         document.querySelector(".page").appendChild(this._element)
+
+        return Element
+
     }
 
     close() {
@@ -53,17 +56,26 @@ export class Popup{
         let popup = document.querySelector(this._container)
         popup.classList.remove("form_active")
 
-
-        // remove the element and events listeners
-        let outClickFunct = this._outClickFunct
-        let escFunct = this._escFunct
-
+        // when a function is called from a nested function
+        // like setTimeout, the reference should be stored
+        // in a new variable to make ti work.
+        let removeEventListeners = this.removeEventListeners.bind(this)
         setTimeout(function () {
 
-            document.removeEventListener("click", outClickFunct)
-            document.removeEventListener("keydown", escFunct)
+            // document.removeEventListener("click", outClickFunct)
+            // document.removeEventListener("keydown", escFunct)
+
+            removeEventListeners()
             popup.remove()
+
         }, 500)
+
+    }
+
+    removeEventListeners(){
+
+        document.removeEventListener("click", this._outClickFunct)
+        document.removeEventListener("keydown", this._escFunct)
 
     }
 
@@ -79,48 +91,10 @@ export class Popup{
         // additional event listeners
 
         // click outside the popup
-        this._outClickFunct = this._handleOutClick.bind(this)
         document.addEventListener("click", this._outClickFunct)
 
         // press esc key
-        this._escFunct = this._handleEscClose.bind(this)
         document.addEventListener("keydown", this._escFunct)
-
-    }
-
-}
-
-// popup with image
-export class PopupWithImage extends Popup {
-
-    // this is the popup that appears when the image is clicked
-    open(){}
-
-    setEventListeners() {
-        super.setEventListeners();
-        // big popup image
-        document.querySelector(".zoom__button").addEventListener(
-            "click", Card._zoomFunctions.closeImage)
-    }
-
-
-}
-
-export class PopupWithForm extends Popup {
-
-    // this is the popup that appears when the image is clicked
-    open(){}
-
-    _getInputValues() {}
-
-    close() {
-        super.close()
-
-    }
-
-    setEventListeners(){
-        // debe agregar al formulario un controlador de
-        // eventos submit y el detector de eventos click para el icono cerrar
 
     }
 

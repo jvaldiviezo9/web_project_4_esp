@@ -739,7 +739,7 @@ explicitly, e.g.
   object-fit: contain;
 }
 
-.zoom__button {
+.zoom__close-button {
   position: absolute;
   top: -38px;
   right: -38px;
