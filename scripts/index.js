@@ -7,6 +7,7 @@ import Form from "./Form.js"
 import Section from "./Section.js"
 import {Popup} from "./Popup.js";
 import {PopupWithImage} from "./PopupWithImage.js";
+import {PopupWithForm} from "./PopupWithForm";
 
 // step 1: load the initial cards
 
@@ -24,6 +25,9 @@ Card.SetEvents()
 
 let zoomPopup = new PopupWithImage(".zoom")
 zoomPopup.setup()
+
+
+let userForm = new PopupWithForm(".form")
 
 
 
