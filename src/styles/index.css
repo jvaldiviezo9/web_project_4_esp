@@ -591,7 +591,7 @@ explicitly, e.g.
   width: 24px;
   height: 24px;
   border: 1px solid white;
-  background-image: url("/images/edit_button.png");
+  background-image: url("/src/images/edit_button.png");
   background-position: center;
   background-repeat: no-repeat;
   transition: 0.3s;
