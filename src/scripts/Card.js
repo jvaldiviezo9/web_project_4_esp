@@ -1,5 +1,7 @@
 import {template} from "./utils.js";
-
+import like_hover from "../images/like/like_hover.png"
+import like_active from "../images/like/like_active.png"
+import like_default from "../images/like/like_default.png"
 
 // this class only worry will be to store and generate a card object
 export default class Card {
@@ -58,7 +60,7 @@ export default class Card {
         document.querySelector(".elements").addEventListener("mouseover", function (e) {
                 if (e.target.className === "elements__icon") {
                     if (e.target.src.includes("_default")) {
-                        e.target.src = "images/like/like_hover.png"
+                        e.target.src = like_hover
                     }
                 }
             }
@@ -66,7 +68,7 @@ export default class Card {
         document.querySelector(".elements").addEventListener("mouseout", function (e) {
                 if (e.target.className === "elements__icon") {
                     if (e.target.src.includes("_hover")) {
-                        e.target.src = "images/like/like_default.png"
+                        e.target.src = like_default
                     }
                 }
             }
@@ -74,9 +76,9 @@ export default class Card {
         document.querySelector(".elements").addEventListener("click", function (e) {
                 if (e.target.className === "elements__icon") {
                     if (e.target.src.includes("_hover") || e.target.src.includes("_hover")) {
-                        e.target.src = "images/like/like_active.png"
+                        e.target.src = like_active
                     } else if (e.target.src.includes("_active")) {
-                        e.target.src = "images/like/like_hover.png"
+                        e.target.src = like_hover
                     }
                 }
 

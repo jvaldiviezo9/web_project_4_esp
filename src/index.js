@@ -1,12 +1,14 @@
 // load template files
 
-import * as utils from "./utils.js"
+import sass from "./styles/index.sass"
 
-import Card from "./Card.js"
-import Section from "./Section.js"
-import {PopupWithImage} from "./PopupWithImage.js"
-import {PopupWithForm} from "./PopupWithForm.js"
-import {UserInfo} from "./UserInfo.js"
+import * as utils from "./scripts/utils.js"
+
+import Card from "./scripts/Card.js"
+import Section from "./scripts/Section.js"
+import {PopupWithImage} from "./scripts/PopupWithImage.js"
+import {PopupWithForm} from "./scripts/PopupWithForm.js"
+import {UserInfo} from "./scripts/UserInfo.js"
 
 
 // step 1: load the initial cards

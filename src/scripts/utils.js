@@ -1,4 +1,15 @@
-export let template = document.querySelector("template").content;
+export let template = document.querySelector("template").content
+
+
+// ref: https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+
+//import img_montealban from '../images/elements/montealban.jpg';
+const images = importAll(require.context('../images/elements', false, /\.(png|jpe?g|svg)$/));
 
 
 //some places and images taken from here
@@ -33,32 +44,32 @@ export const initialCards = [
         },
         {
             name: "Chichén Itzá",
-            link: "images/elements/chichenitza.jpg"
+            link: images["chichenitza.jpg"]
         },
 
         {
             name: "Monte Albán",
-            link: "images/elements/montealban.jpg"
+            link: images["montealban.jpg"]
         },
 
         {
             name: "Palenque",
-            link: "images/elements/palenque.jpg"
+            link: images["palenque.jpg"]
         },
 
         {
             name: "Tulum",
-            link: "images/elements/tulum.jpg"
+            link: images["tulum.jpg"]
         },
 
         {
             name: "Cenote Dos Ojos",
-            link: "images/elements/cenote%20dos%20ojos.jpg"
+            link: images["cenote dos ojos.jpg"]
         },
 
         {
             name: "Barrancas del cobre",
-            link: "images/elements/barrancas%20del%20cobre.jpg"
+            link: images["barrancas del cobre.jpg"]
         }
 
     ]
