@@ -17,6 +17,27 @@ export class PopupWithForm extends Popup {
         this._submitFunction = submitFunction
     }
 
+    _getInputValues() {
+
+        // this is called after the form has been loaded
+        // returns the inputs from the form
+
+        let form = document.forms[0]
+        let inputList = form.querySelectorAll("input")
+        let formValues = {}
+
+        inputList.forEach((input,i) => {
+            formValues[i] = input.value
+        })
+
+        return formValues
+
+    }
+
+    close() {
+        super.close()
+        document.forms[0].reset()
+    }
 
     setup() {
 
@@ -26,6 +47,7 @@ export class PopupWithForm extends Popup {
         let config = this._config
         let textConfig = this._config.text
         let submitFunction = this._submitFunction
+        let getInputValues = this._getInputValues.bind(this)
 
         // document.querySelector(this._triggerClass).addEventListener("click", (e) => {alert("ok")})
 
@@ -46,12 +68,15 @@ export class PopupWithForm extends Popup {
 
             setEventListeners(".form__close-button")
 
-            const validation_object = new FormValidator(form.querySelector(".form__container"), config)
+
+        const validation_object = new FormValidator(form.querySelector(".form__container"), config)
         validation_object.enableValidation()
 
-
             form.addEventListener("submit", (e) => {
-                submitFunction(e)
+
+                let formValues = getInputValues()
+
+                submitFunction(e, formValues)
                 close()
             })
 

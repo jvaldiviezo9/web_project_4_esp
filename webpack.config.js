@@ -43,10 +43,6 @@ module.exports = {
                     filename: 'assets/[name][ext]'
                 }
             },
-            {
-                test: /\.(css|sass|scss)$/,
-                use: ["style-loader", { loader: 'css-loader', options: { url: false } }, "sass-loader"],
-            },
             // review:
             {
                 test: /\.woff2\?v=3\.19$/,
@@ -55,7 +51,12 @@ module.exports = {
             {
                 test: /\.(html)$/i,
                 use: ['html-loader']
-            }
+            },
+            {
+                test: /\.(css|sass|scss)$/,
+                use: ["style-loader", { loader: 'css-loader', options: { url: false } }, "sass-loader"],
+            },
+
         ]
     },
     plugins: [

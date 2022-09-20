@@ -1,33 +1,33 @@
 
 export class UserInfo{
 
-    constructor(name, about, avatar="") {
-        this._name = name
-        this._about = about
-        this._avatar = avatar
+    constructor(nameSelector, aboutSelector, avatarSelector) {
+        this._nameSelector = nameSelector
+        this._aboutSelector = aboutSelector
+        this._avatarSelector = avatarSelector
     }
 
+    // returns an object with the info from the markup
     getUserInfo() {
-
-        let userElement = document.querySelector(".profile__container")
 
         return {
 
-            name: userElement.querySelector(".profile__name").textContent,
-            about: userElement.querySelector(".profile__description").textContent,
-            avatar: userElement.querySelector(".profile__avatar").src,
+            name: document.querySelector(this._nameSelector).textContent,
+            about: document.querySelector(this._aboutSelector).textContent,
+            avatar: document.querySelector(this._avatarSelector).src,
 
         }
     }
 
-    setUserInfo(name, about, avatar) {
+    // this uses the constructor to set the values
+    setUserInfo(name, about, avatar=null) {
 
-        let userElement = document.querySelector(".profile__container")
+        document.querySelector(this._nameSelector).textContent = name
+        document.querySelector(this._aboutSelector).textContent = about
 
-        userElement.querySelector(".profile__name").textContent = this._name
-        userElement.querySelector(".profile__description").textContent = this._about
-        userElement.querySelector(".profile__avatar").src = this._avatar
-
+        if (avatar){
+            document.querySelector(this._avatarSelector).src = avatar
+        }
     }
 }
 

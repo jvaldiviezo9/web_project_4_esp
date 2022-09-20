@@ -67,15 +67,15 @@ let configFormCard = {
     }
 }
 
-let form_edit_profile = (e) => {
+let form_edit_profile = (e, formValues) => {
 
     e.preventDefault()
 
-    let name = e.target.elements.form__name.value
-    let about = e.target.elements.form__description.value
+    let name = formValues[0]
+    let about = formValues[1]
 
-    let userInfo = new UserInfo(name, about)
-    userInfo.setUserInfo()
+    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__avatar")
+    userInfo.setUserInfo(name, about)
 
 }
 
@@ -83,14 +83,14 @@ let form_edit_profile = (e) => {
 let userForm = new PopupWithForm(".form", ".profile__edit", configFormProfile, form_edit_profile)
 userForm.setup()
 
-let form_edit_card = (e) => {
+let form_edit_card = (e, formValues) => {
 
     e.preventDefault()
 
     let card_info = {}
 
-    card_info.name = e.target.elements.form__name.value
-    card_info.link = e.target.elements.form__description.value
+    card_info.name = formValues[0]
+    card_info.link = formValues[1]
 
     let newCard = new Section({
         items: [card_info],
