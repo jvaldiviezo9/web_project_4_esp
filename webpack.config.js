@@ -35,26 +35,20 @@ module.exports = {
                 loader: "babel-loader",
                 exclude: "/node_modules/"
             },
-
             {
-                test: /\.(png|svg|jpg|gif|eot|ttf|otf)$/,
+                test: /\.(css|sass)$/,
+                use: ["style-loader", { loader: 'css-loader', options: { url: true } }, 'sass-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
                 type: "asset/resource",
                 generator: {
                     filename: 'assets/[name][ext]'
                 }
             },
-            // review:
-            {
-                test: /\.woff2\?v=3\.19$/,
-                use: [{loader: 'url-loader', options: { url: false } }]
-            },
             {
                 test: /\.(html)$/i,
                 use: ['html-loader']
-            },
-            {
-                test: /\.(css|sass|scss)$/,
-                use: ["style-loader", { loader: 'css-loader', options: { url: false } }, "sass-loader"],
             },
 
         ]

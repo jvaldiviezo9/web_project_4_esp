@@ -10,20 +10,36 @@ import {PopupWithImage} from "./scripts/PopupWithImage.js"
 import {PopupWithForm} from "./scripts/PopupWithForm.js"
 import {UserInfo} from "./scripts/UserInfo.js"
 
+import {Api} from "./scripts/Api.js";
 
-// step 1: load the initial cards
+const api = new Api('https://around.nomoreparties.co/v1/cohort-1-es', "3e02ecdf-737d-4954-9ff6-836c396f5812");
 
-let initialCardSection = new Section({
-    items: utils.initialCards,
-    renderer: (item) => {
 
-        let card_element = new Card(item, ".elements__card");
-        initialCardSection.addItem(card_element.generateCard());
-    }
-}, ".elements")
+Promise.all([api.getCards(), api.getUserInfo()]).then(res => {
 
-initialCardSection.renderer()
-Card.SetEvents()
+    const apiCardsResponse = res[0]
+    const apiUserInfoResponse = res[1]
+
+    // process the apiCardsResponse
+
+
+    // step 1: load the initial cards
+    let initialCardSection = new Section({
+        // replace with the api get cards
+        items: utils.initialCards,
+
+        renderer: (item) => {
+
+            let card_element = new Card(item, ".elements__card");
+            initialCardSection.addItem(card_element.generateCard());
+        }
+    }, ".elements")
+
+    initialCardSection.renderer()
+    Card.SetEvents()
+
+})
+
 
 let zoomPopup = new PopupWithImage(".zoom")
 zoomPopup.setup()
