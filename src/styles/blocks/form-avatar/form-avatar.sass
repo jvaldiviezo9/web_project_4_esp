@@ -1,0 +1,130 @@
+@import "../../constants"
+
+// note: to properly do the fade-in and fade-out transitions
+// we need to add visibility as well on the js side.
+// also add a class with a timeout event and remove the class with
+// the same method as well. In the case of this form
+// the added/removed class is form_active
+
+.form-avatar
+
+  visibility: hidden
+  opacity: 0
+  transition: visibility 0s, opacity .5s linear
+
+  background-color: white
+  position: fixed
+  border-radius: 20px
+  top: 50vh
+  left: 50%
+  transform: translate(-50%, -50%)
+  box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7)
+
+.form-avatar_active
+    visibility: visible
+    opacity: 1
+
+.form-avatar__container
+  display: flex
+  flex-direction: column
+  //justify-content: center
+  align-items: center
+  background-color: white
+  color: black
+  border-radius: 20px
+
+  width: 430px
+  min-height: 330px
+
+
+.form-avatar__title
+  color: black
+  background-color: white
+  font-size: 24px
+  font-weight: bold
+  width: 358px
+  margin-top: 34px
+  margin-bottom: 34px
+
+.form-avatar__close-button
+  position: absolute
+  top: -38px
+  right: -38px
+  transition: 0.3s
+  background-color: transparent
+
+.form-avatar__close-button:hover
+  cursor: pointer
+  opacity: .5
+
+
+// form inputs
+
+.form-avatar__src
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form-avatar__src:hover
+  border-bottom: 1px solid #0f7add
+
+
+.form-avatar__description
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form-avatar__description:hover
+  border-bottom: 1px solid #0f7add
+
+.form-avatar__submit
+  position: absolute
+  width: 358px
+  height: 50px
+  bottom: 30px
+  transition: 0.3s
+
+.form-avatar__submit:hover
+  cursor: pointer
+  opacity: .5
+
+.form-avatar__submit:disabled
+  cursor: not-allowed
+  opacity: 0.18
+  border: 2px solid gray
+
+.form-avatar__submit:disabled:hover
+  cursor: not-allowed
+  opacity: 0.25
+  border: 2px solid gray
+
+.form-avatar__src-error
+  position: relative
+  margin-top: 5px
+  margin-bottom: 5px
+  //self flex align to left
+
+  align-self: flex-start
+  margin-left: 36px
+
+  background-color: white
+  color: white
+
+.form-avatar__error-active
+
+  background-color: white
+  color: red
+
+
+
+  //visibility: hidden
+
+
