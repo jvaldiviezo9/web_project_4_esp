@@ -6,11 +6,17 @@ import like_default from "../images/like/like_default.png"
 // this class only worry will be to store and generate a card object
 export default class Card {
 
-    constructor(cardInfo, templateClass) {
+    constructor(cardInfo, templateClass, userObj) {
 
         this._templateClass = templateClass
         this._image = cardInfo.link
         this._name = cardInfo.name
+
+
+        this._likes = cardInfo.likes
+        this._cardId = cardInfo._id
+        this._ownerId =cardInfo.owner._id
+        this._userId = userObj._id
 
     }
 
@@ -55,7 +61,7 @@ export default class Card {
     }
 
     // events to interact with the cards and the zoom image container.
-    static SetEvents() {
+    static SetEvents(api) {
         // add global event on hover in the elements
         document.querySelector(".elements").addEventListener("mouseover", function (e) {
                 if (e.target.className === "elements__icon") {
@@ -73,18 +79,37 @@ export default class Card {
                 }
             }
         )
+
+        // add the like event
         document.querySelector(".elements").addEventListener("click", function (e) {
                 if (e.target.className === "elements__icon") {
-                    if (e.target.src.includes("_hover") || e.target.src.includes("_hover")) {
+                    if (e.target.src.includes("_hover")) {
                         e.target.src = like_active
+
+                        api.putLike(e.target.closest(".elements__card").dataset.cardId).then((res) => {
+                            e.target.closest(".elements__card").querySelector(".elements__like-counter").textContent = res.likes.length
+                            e.target.src = like_active
+                        }).catch(
+                            (err) => {
+                                console.log(err)
+                                e.target.src = like_default
+                            }
+                        )
+
                     } else if (e.target.src.includes("_active")) {
                         e.target.src = like_hover
+
+                        api.deleteLike(e.target.closest(".elements__card").dataset.cardId).then((res) => {
+                            e.target.closest(".elements__card").querySelector(".elements__like-counter").textContent = res.likes.length
+                            e.target.src = like_hover
+                        }).catch(
+                            (err) => {
+                                console.log(err)
+                                e.target.src = like_active
+                            })
                     }
                 }
 
-                if (e.target.className === "elements__trash") {
-                    Card.RemoveCard(e.target)
-                }
 
             }
         )
@@ -103,9 +128,25 @@ export default class Card {
     generateCard() {
         let cardElement = this._getTemplate()
 
+        if (this._userId !== this._ownerId) {
+            cardElement.querySelector(".elements__trash").style.display = "none"
+        }
+
+        // add the number of likes
+        cardElement.querySelector(".elements__like-counter").textContent = this._likes.length
+
+        // iterate over the like array and check if the user has liked the card
+        if (this._likes.some(like => like._id === this._userId)) {
+            cardElement.querySelector(".elements__icon").src = like_active
+        }
+
         cardElement.querySelector(".elements__text").textContent = this._name
         cardElement.querySelector(".elements__image").src = this._image
         cardElement.querySelector(".elements__image").alt = this._name.replace(/\s/g, "_")
+
+        // insert the cardId in the card element
+        cardElement.dataset.cardId = this._cardId
+
 
         return cardElement;
     }

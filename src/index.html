@@ -26,15 +26,19 @@
 
       <div class="profile__container">
 
-        <img class=profile__picture src="images/Aristh.jpg" alt="profile picture">
+        <div class="profile__avatar">
+          <img class=profile__picture src="#" alt="profile picture">
+          <img class="profile__icon" src="/src/images/edit_pencil.png" alt="edit icon">
+        </div>
+
 
         <div class="profile__info">
 
           <h2 class="profile__name">
-            Aristh Valdiviezo
+            Loading...
           </h2>
           <h4 class="profile__description">
-            Data Scientist and Web Developer.
+            Loading...
           </h4>
 
         </div>
@@ -71,13 +75,14 @@
 
       <img class="elements__trash" src="images/trash_icon.png" alt="trash icon">
 
-      <img class="elements__image" src="images/elements/barrancas%20del%20cobre.jpg" alt="Barrancas del cobre">
+      <img class="elements__image" src="#" alt="">
       <div class="elements__info">
 
-        <h2 class="elements__text">Barrancas del cobre</h2>
+        <h2 class="elements__text"></h2>
 
         <button class="elements__like">
           <img class="elements__icon" src="images/like/like_default.png" alt="like_icon">
+          <span class="elements__like-counter">0</span>
         </button>
 
       </div>
@@ -105,6 +110,43 @@
       </form>
 
     </div>
+
+    <!-- popup avatar -->
+    <div class="form-avatar">
+
+      <img class="form-avatar__close-button form__close-button" src="images/close_icon.png" alt="close button">
+
+      <form class="form-avatar__container" novalidate>
+        <h2 class="form-avatar__title"></h2>
+
+        <input class="form-avatar__src" id="form-avatar__src" type="text" placeholder="" required>
+        <span class="form-avatar__src-error">field__name</span>
+
+        <button class="form-avatar__submit" type="submit" disabled>
+          Save
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- popup confirmation -->
+
+    <div class="form-confirmation">
+
+      <img class="form-confirmation__close-button form__close-button" src="images/close_icon.png" alt="close button">
+
+      <form class="form-confirmation__container" novalidate>
+        <h2 class="form-confirmation__title">¿Estás seguro?</h2>
+
+        <button class="form-confirmation__submit" type="button">
+          Sí
+        </button>
+
+      </form>
+
+    </div>
+
 
     <!--popup-->
     <div class="zoom">

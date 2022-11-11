@@ -20,11 +20,22 @@ export class UserInfo{
     }
 
     // this uses the constructor to set the values
-    setUserInfo(name, about, avatar=null) {
+    setUserInfo(name, about, avatar=null, apiElement=null) {
 
         document.querySelector(this._nameSelector).textContent = name
         document.querySelector(this._aboutSelector).textContent = about
 
+
+        if(apiElement){
+            apiElement.patchUserInfo(name, about).then(res => {
+                // it's okay
+            }).catch(err => {
+                // put errors in the console
+                console.log(err)
+                document.querySelector(this._nameSelector).textContent = "#APIError"
+                document.querySelector(this._aboutSelector).textContent = "#APIError"
+            })
+        }
         if (avatar){
             document.querySelector(this._avatarSelector).src = avatar
         }

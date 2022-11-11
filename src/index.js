@@ -11,34 +11,66 @@ import {PopupWithForm} from "./scripts/PopupWithForm.js"
 import {UserInfo} from "./scripts/UserInfo.js"
 
 import {Api} from "./scripts/Api.js";
+import {PopupWithConfirmation} from "./scripts/PopupWithConfirmation";
 
 const api = new Api('https://around.nomoreparties.co/v1/cohort-1-es', "3e02ecdf-737d-4954-9ff6-836c396f5812");
+let userObj = null
 
+async function initialRender() {
+    userObj = await api.getUserInfo()
+    const cards = await api.getCards()
 
-Promise.all([api.getCards(), api.getUserInfo()]).then(res => {
+    // extract the items from the response
+    const items = cards.map(({name, link, _id, owner, likes}) => ({name, link, _id, owner, likes}))
 
-    const apiCardsResponse = res[0]
-    const apiUserInfoResponse = res[1]
-
-    // process the apiCardsResponse
-
-
-    // step 1: load the initial cards
+    // render the items
     let initialCardSection = new Section({
-        // replace with the api get cards
-        items: utils.initialCards,
 
+        items,
         renderer: (item) => {
-
-            let card_element = new Card(item, ".elements__card");
+            let card_element = new Card(item, ".elements__card", userObj);
             initialCardSection.addItem(card_element.generateCard());
         }
+
     }, ".elements")
 
+    initialCardSection.clear()
     initialCardSection.renderer()
-    Card.SetEvents()
+    Card.SetEvents(api)
 
-})
+    console.dir(cards)
+
+    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
+    userInfo.setUserInfo(userObj.name, userObj.about, userObj.avatar)
+
+}
+
+const res = initialRender()
+
+// Promise.all([api.getCards(), api.getUserInfo()]).then(res => {
+//
+//     const apiCardsResponse = res[0]
+//     const apiUserInfoResponse = res[1]
+//
+//     // process the apiCardsResponse
+//
+//
+//     // step 1: load the initial cards
+//     let initialCardSection = new Section({
+//         // replace with the api get cards
+//         items: utils.initialCards,
+//
+//         renderer: (item) => {
+//
+//             let card_element = new Card(item, ".elements__card");
+//             initialCardSection.addItem(card_element.generateCard());
+//         }
+//     }, ".elements")
+//
+//     initialCardSection.renderer()
+//     Card.SetEvents()
+//
+// })
 
 
 let zoomPopup = new PopupWithImage(".zoom")
@@ -83,6 +115,20 @@ let configFormCard = {
     }
 }
 
+let configFormAvatar = {
+    "text": {
+        "form-avatar__title": ["textContent", "Add Link"],
+        "form-avatar__src": ["placeholder", "URL"],
+    },
+    "errorValidation": {
+        "form-avatar__src": {
+            "minlength": 2,
+            "type": "url",
+            "pattern": "https?://.+"
+        },
+    }
+}
+
 let form_edit_profile = (e, formValues) => {
 
     e.preventDefault()
@@ -90,11 +136,10 @@ let form_edit_profile = (e, formValues) => {
     let name = formValues[0]
     let about = formValues[1]
 
-    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__avatar")
-    userInfo.setUserInfo(name, about)
+    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
+    userInfo.setUserInfo(name, about, null, api)
 
 }
-
 
 let userForm = new PopupWithForm(".form", ".profile__edit", configFormProfile, form_edit_profile)
 userForm.setup()
@@ -108,22 +153,78 @@ let form_edit_card = (e, formValues) => {
     card_info.name = formValues[0]
     card_info.link = formValues[1]
 
-    let newCard = new Section({
-        items: [card_info],
-        renderer: (item) => {
 
-            let card_element = new Card(item, ".elements__card");
-            newCard.addItem(card_element.generateCard());
-        }
-    }, ".elements")
+    // add the card to the api
+    api.postCard(card_info.name, card_info.link).then(res => {
 
-    newCard.renderer()
+        const items = [res]
+        // convert only the last item into the first one
+
+        let newCard = new Section({
+            items,
+            renderer: (item) => {
+
+                let card_element = new Card(item, ".elements__card", userObj);
+                newCard.addItem(card_element.generateCard());
+            }
+        }, ".elements")
+
+        newCard.renderer()
+
+    }).catch(err => {
+        console.error(err)
+    })
 }
-
 
 let cardForm = new PopupWithForm(".form", ".profile__add", configFormCard, form_edit_card)
 cardForm.setup()
 
+
+let form_edit_avatar = (e, formValues) => {
+
+    e.preventDefault()
+
+    let avatar_info = {}
+
+    avatar_info.name = formValues[0]
+
+    // add the card to the api
+    api.patchAvatar(avatar_info.name).then(res => {
+
+        let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
+        userInfo.setUserInfo(null, null, avatar_info.name, api)
+
+    }).catch(err => {
+        console.error(err)
+    })
+}
+
+
+let avatarForm = new PopupWithForm(".form-avatar", ".profile__avatar", configFormAvatar, form_edit_avatar, ".form-avatar__container")
+avatarForm.setup()
+
+
+let form_edit_confirmation = (e, formValues) => {
+
+    e.preventDefault()
+
+    let avatar_info = {}
+
+    avatar_info.name = formValues[0]
+
+    // add the card to the api
+    api.patchAvatar(avatar_info.name).then(res => {
+
+        let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
+        userInfo.setUserInfo(null, null, avatar_info.name, api)
+
+    }).catch(err => {
+        console.error(err)
+    })
+}
+
+let confirmationForm = new PopupWithConfirmation(".form-confirmation", form_edit_confirmation, api, initialRender)
+confirmationForm.setup()
 
 
 

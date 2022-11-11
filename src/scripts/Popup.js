@@ -38,10 +38,21 @@ export class Popup{
     open() {
         let Element = this._getTemplate()
         this._element = Element
-
         Element.style.visibility = "visible"
         setTimeout( () => {
-                this._element.classList.add("form_active")
+
+            // if "avatar" in class list item
+            // then add the class "avatar__form_active"
+
+            if (Array.from(Element.classList).some( (item) => item.includes("avatar"))) {
+                Element.classList.add("form-avatar_active")
+            } else if (Array.from(Element.classList).some( (item) => item.includes("confirmation"))) {
+                Element.classList.add("form-confirmation_active")
+            } else {
+                Element.classList.add("form_active")
+            }
+
+            console.log(this._element.classList)
             }, 100)
 
         document.querySelector(".page").appendChild(this._element)
@@ -54,7 +65,13 @@ export class Popup{
 
         // shade out animation
         let popup = document.querySelector(this._container)
-        popup.classList.remove("form_active")
+        // popup.classList.remove("form_active")
+
+        if (Array.from(popup.classList).some( (item) => item.includes("avatar"))) {
+            popup.classList.remove("form-avatar_active")
+        } else {
+            popup.classList.remove("form_active")
+        }
 
         // when a function is called from a nested function
         // like setTimeout, the reference should be stored

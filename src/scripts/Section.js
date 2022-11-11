@@ -22,7 +22,7 @@ export default class Section{
     }
 
     addItem(item) {
-        this._container.prepend(item)
+        this._container.append(item)
     }
 
 }

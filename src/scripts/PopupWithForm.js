@@ -5,7 +5,7 @@ import FormValidator from "./FormValidator.js";
 export class PopupWithForm extends Popup {
 
 
-    constructor(containerClass, triggerClass, config, submitFunction) {
+    constructor(containerClass, triggerClass, config, submitFunction, formContainerSelector=null) {
 
         super(containerClass);
 
@@ -15,6 +15,8 @@ export class PopupWithForm extends Popup {
         this._open = this.open.bind(this)
         this._close = this.close.bind(this)
         this._submitFunction = submitFunction
+
+        this._formContainerSelector = formContainerSelector
     }
 
     _getInputValues() {
@@ -49,16 +51,17 @@ export class PopupWithForm extends Popup {
         let submitFunction = this._submitFunction
         let getInputValues = this._getInputValues.bind(this)
 
-        // document.querySelector(this._triggerClass).addEventListener("click", (e) => {alert("ok")})
+        let formContainerSelector = this._formContainerSelector
 
-        document.querySelector(this._triggerClass).addEventListener("click", function (e){
+
+        document.querySelector(this._triggerClass).addEventListener("click", function (e) {
 
             let form = open()
             // edit the text fields
 
             e.stopPropagation()
 
-            Object.entries(textConfig).forEach( ([key, value]) => {
+            Object.entries(textConfig).forEach(([key, value]) => {
 
                 console.log(key, value)
 
@@ -69,8 +72,13 @@ export class PopupWithForm extends Popup {
             setEventListeners(".form__close-button")
 
 
-        const validation_object = new FormValidator(form.querySelector(".form__container"), config)
-        validation_object.enableValidation()
+            let validation_object = null
+            if (formContainerSelector) {
+                validation_object = new FormValidator(form.querySelector(`${formContainerSelector}`), config)
+            } else {
+                validation_object = new FormValidator(form.querySelector(".form__container"), config)
+            }
+            validation_object.enableValidation()
 
             form.addEventListener("submit", (e) => {
 

@@ -68,15 +68,25 @@
   padding-right: 15px
   cursor: pointer
 
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+.elements__like-counter
+  background-color: white
+  color: black
+  font-size: 14px
 
 .elements__icon
   background-color: white
   border: none
-  z-index: 1
+  //z-index: 1
 
 
 .elements__icon_status_hover
-  background-image: ("../../../images/like/like_hover.png")
+  //background-image: ("../../../images/like/like_hover.png")
+  background-image: url("/src/images/like/like_hover.png")
 
 .elements__icon_status_active
   background-image: url("/src/images/like/like_active.png")
