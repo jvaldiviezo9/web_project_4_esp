@@ -44,7 +44,7 @@ export class PopupWithForm extends Popup {
     setup() {
 
         let open = this._open
-        let close = this._close
+        let close = this._close.bind(this)
         let setEventListeners = this.setEventListeners.bind(this)
         let config = this._config
         let textConfig = this._config.text
@@ -78,14 +78,16 @@ export class PopupWithForm extends Popup {
             } else {
                 validation_object = new FormValidator(form.querySelector(".form__container"), config)
             }
+
             validation_object.enableValidation()
+
+            let close_function = close
 
             form.addEventListener("submit", (e) => {
 
                 let formValues = getInputValues()
-
-                submitFunction(e, formValues)
-                close()
+                submitFunction(e, formValues, close_function)
+                // close()
             })
 
         })

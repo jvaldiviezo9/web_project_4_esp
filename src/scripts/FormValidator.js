@@ -32,9 +32,13 @@ export default class FormValidator {
             // validate the input
             input.addEventListener("input", e => {
 
+
+
                 let errorSpan = document.forms[0].querySelector(`.${input.id}-error`)
 
                 errorSpan.textContent = input.validationMessage.split("(")[0]
+
+                debugger
 
                 if (input.validationMessage === "") {
                     errorSpan.textContent = "Ok"

@@ -18,10 +18,7 @@ let userObj = null
 
 async function initialRender() {
     userObj = await api.getUserInfo()
-    const cards = await api.getCards()
-
-    // extract the items from the response
-    const items = cards.map(({name, link, _id, owner, likes}) => ({name, link, _id, owner, likes}))
+    const items = await api.getCards()
 
     // render the items
     let initialCardSection = new Section({
@@ -38,7 +35,6 @@ async function initialRender() {
     initialCardSection.renderer()
     Card.SetEvents(api)
 
-    console.dir(cards)
 
     let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
     userInfo.setUserInfo(userObj.name, userObj.about, userObj.avatar)
@@ -79,72 +75,73 @@ zoomPopup.setup()
 
 let configFormProfile = {
 
-    "text": {
-        "form__title": ["textContent", "Edit profile"],
-        "form__name": ["placeholder", "Name"],
-        "form__description": ["placeholder", "Description"],
+    text: {
+        form__title: ["textContent", "Edit profile"],
+        form__name: ["placeholder", "Name"],
+        form__description: ["placeholder", "Description"],
     },
-    "errorValidation": {
-        "form__name": {
-            "minlength": 2,
-            "maxlength": 40,
+    errorValidation: {
+        form__name: {
+            minlength: 2,
+            maxlength: 40,
         },
-        "form__description": {
-            "minlength": 2,
-            "maxlength": 200,
+        form__description: {
+            minlength: 2,
+            maxlength: 200,
         }
     }
 
 }
 let configFormCard = {
-    "text": {
-        "form__title": ["textContent", "Add Place"],
-        "form__name": ["placeholder", "Place"],
-        "form__description": ["placeholder", "URL"],
+    text: {
+        form__title: ["textContent", "Add Place"],
+        form__name: ["placeholder", "Place"],
+        form__description: ["placeholder", "URL"],
     },
-    "errorValidation": {
-        "form__name": {
-            "minlength": 2,
-            "maxlength": 40,
+    errorValidation: {
+        form__name: {
+            minlength: 2,
+            maxlength: 40,
         },
-        "form__description": {
-            "minlength": 2,
-            "type": "url",
-            "pattern": "https?://.+"
+        form__description: {
+            minlength: 2,
+            type: "url",
+            pattern: "https?://.+"
         }
     }
 }
-
 let configFormAvatar = {
-    "text": {
+    text: {
         "form-avatar__title": ["textContent", "Add Link"],
-        "form-avatar__src": ["placeholder", "URL"],
+        "form-avatar__src": ["placeholder", "URL"]
     },
-    "errorValidation": {
+    errorValidation: {
         "form-avatar__src": {
-            "minlength": 2,
-            "type": "url",
-            "pattern": "https?://.+"
+            minlength: 2,
+            type: "url",
+            pattern: "https?://.+"
         },
     }
 }
 
-let form_edit_profile = (e, formValues) => {
+let form_edit_profile = (e, formValues, closeFunction) => {
 
     e.preventDefault()
 
     let name = formValues[0]
     let about = formValues[1]
 
-    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
+    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture", closeFunction)
     userInfo.setUserInfo(name, about, null, api)
+
+
 
 }
 
 let userForm = new PopupWithForm(".form", ".profile__edit", configFormProfile, form_edit_profile)
 userForm.setup()
 
-let form_edit_card = (e, formValues) => {
+let form_edit_card = (e, formValues, closeFunction) => {
 
     e.preventDefault()
 
@@ -180,15 +177,15 @@ let cardForm = new PopupWithForm(".form", ".profile__add", configFormCard, form_
 cardForm.setup()
 
 
-let form_edit_avatar = (e, formValues) => {
+let form_edit_avatar = (e, formValues, closeFunction) => {
 
     e.preventDefault()
 
     let avatar_info = {}
-
     avatar_info.name = formValues[0]
 
     // add the card to the api
+    debugger
     api.patchAvatar(avatar_info.name).then(res => {
 
         let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")

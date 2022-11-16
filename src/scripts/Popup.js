@@ -61,7 +61,7 @@ export class Popup{
 
     }
 
-    close() {
+    close(timeout_var=500) {
 
         // shade out animation
         let popup = document.querySelector(this._container)
@@ -85,7 +85,7 @@ export class Popup{
             removeEventListeners()
             popup.remove()
 
-        }, 500)
+        }, timeout_var)
 
     }
 
