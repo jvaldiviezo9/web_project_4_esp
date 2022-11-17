@@ -134,8 +134,6 @@ let form_edit_profile = (e, formValues, closeFunction) => {
     let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture", closeFunction)
     userInfo.setUserInfo(name, about, null, api)
 
-
-
 }
 
 let userForm = new PopupWithForm(".form", ".profile__edit", configFormProfile, form_edit_profile)
@@ -151,7 +149,12 @@ let form_edit_card = (e, formValues, closeFunction) => {
     card_info.link = formValues[1]
 
 
-    // add the card to the api
+    // get the info from the form
+    let form = document.forms[0]
+
+    let button = form.querySelector("button")
+    button.textContent = "Saving..."
+
     api.postCard(card_info.name, card_info.link).then(res => {
 
         const items = [res]
@@ -162,14 +165,21 @@ let form_edit_card = (e, formValues, closeFunction) => {
             renderer: (item) => {
 
                 let card_element = new Card(item, ".elements__card", userObj);
-                newCard.addItem(card_element.generateCard());
+                newCard.addItem(card_element.generateCard(), true);
             }
         }, ".elements")
 
         newCard.renderer()
 
+
+        button.textContent = "Saved"
+        setTimeout(() => {
+            closeFunction()
+        }, 500)
+
     }).catch(err => {
         console.error(err)
+        button.textContent = "Try again"
     })
 }
 
@@ -184,16 +194,14 @@ let form_edit_avatar = (e, formValues, closeFunction) => {
     let avatar_info = {}
     avatar_info.name = formValues[0]
 
-    // add the card to the api
-    debugger
-    api.patchAvatar(avatar_info.name).then(res => {
+    // update avatar profile
 
-        let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
-        userInfo.setUserInfo(null, null, avatar_info.name, api)
+    let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture", closeFunction)
 
-    }).catch(err => {
-        console.error(err)
-    })
+    let userObj = userInfo.getUserInfo()
+    userInfo.setUserInfo(userObj.name, userObj.about, avatar_info.name, api)
+
+
 }
 
 
@@ -201,26 +209,9 @@ let avatarForm = new PopupWithForm(".form-avatar", ".profile__avatar", configFor
 avatarForm.setup()
 
 
-let form_edit_confirmation = (e, formValues) => {
 
-    e.preventDefault()
 
-    let avatar_info = {}
-
-    avatar_info.name = formValues[0]
-
-    // add the card to the api
-    api.patchAvatar(avatar_info.name).then(res => {
-
-        let userInfo = new UserInfo(".profile__name", ".profile__description",".profile__picture")
-        userInfo.setUserInfo(null, null, avatar_info.name, api)
-
-    }).catch(err => {
-        console.error(err)
-    })
-}
-
-let confirmationForm = new PopupWithConfirmation(".form-confirmation", form_edit_confirmation, api, initialRender)
+let confirmationForm = new PopupWithConfirmation(".form-confirmation", null, api, initialRender)
 confirmationForm.setup()
 
 

@@ -19,7 +19,6 @@ export class PopupWithConfirmation extends Popup {
     }
 
 
-
     setup() {
 
         let open = this._open
@@ -44,6 +43,11 @@ export class PopupWithConfirmation extends Popup {
 
                     apiElement.deleteCard(cardId).then((res) => {
                         renderFunction()
+
+                        setTimeout(() => {
+                            close()
+                        }, 500)
+
                     }).catch(
                         (err) => {
                             console.log(err)

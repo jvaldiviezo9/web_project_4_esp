@@ -6,6 +6,8 @@ export class Api{
 
     }
 
+    // Nota: Gracias por los comentarios, con el uso de React pienso usar Asyc/Await para practicarlo
+
     // get the cards from the server
     getCards(){
             return fetch(`${this.baseUrl}/cards`, {
