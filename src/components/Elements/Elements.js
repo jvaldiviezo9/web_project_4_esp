@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import ElementsCard from "./ElementsCard"
+import Card from "./Card"
 import "../../blocks/Elements.sass"
 
 const Elements = (props) => {
@@ -29,7 +29,7 @@ const Elements = (props) => {
     <section className="elements">
 
       {cards.map((cardObject, key) => {
-      return <ElementsCard cardObject={cardObject} userObject={userObject} ApiElement={ApiElement} setCards={setCards} key={key}/>;
+      return <Card cardObject={cardObject} userObject={userObject} ApiElement={ApiElement} setCards={setCards} key={key}/>;
       })}
 
     </section>

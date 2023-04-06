@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from "react";
+import ImagePopup from "../Popups/ImagePopup";
 
 import trashIcon from "../../images/trash_icon.png";
 import likeDefault from "../../images/like/like_default.png";
 import likeActive from "../../images/like/like_active.png";
 import likeHover from "../../images/like/like_hover.png";
-import closeIcon from "../../images/close_icon.png";
 
-const ElementsCard = (props) => {
+const Card = (props) => {
 
   const [likeSrc, setLikeSrc] = useState([false,likeDefault]);
-  const [imagePopup, setImagePopup] = useState(false);
   const setCards = props.setCards;
 
   const ApiElement = props.ApiElement
@@ -36,15 +35,6 @@ const ElementsCard = (props) => {
   }
   const onLikeUnhover = () => {
     if (likeSrc[0]===false) setLikeSrc([false, likeDefault]);
-  };
-
-  const imageOpen = () => {
-    setImagePopup(true);
-    console.log("click");
-  };
-
-  const imageClose = () => {
-    setImagePopup(false);
   };
 
   const likeFunction = () => {
@@ -87,6 +77,15 @@ const ElementsCard = (props) => {
     })
   }
 
+  const imageOpen = () => {
+    setImagePopup(true);
+    console.log("click");
+  };
+
+  const [imagePopup, setImagePopup] = useState(false);
+  const imageClose = () => {
+    setImagePopup(false);
+  };
 
   return (
     <>
@@ -104,18 +103,10 @@ const ElementsCard = (props) => {
           </button>
         </div>
       </div>
-      {imagePopup && (
-        <>
-          <div className="elements__popupContainer">
-            <img onClick={imageClose} className="elements__close-button" src={closeIcon} alt="close button"/>
-            <img className="elements__imagePopup" src={cardObject.link} alt="" />
-          </div>
-
-        </>
-      )}
+      {imagePopup && <ImagePopup imageLink={cardObject.link} onClose={imageClose} />}
     </>
   );
 };
 
-export default ElementsCard;
+export default Card;
 

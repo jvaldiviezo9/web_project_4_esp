@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import aristh from "../../images/Aristh.jpg";
 import editPencil from "../../images/edit_pencil.png";
 import "../../blocks/Form.sass";
 import closeIcon from "../../images/close_icon.png";

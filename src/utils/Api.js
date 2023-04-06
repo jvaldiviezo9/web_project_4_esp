@@ -1,12 +1,8 @@
 export class Api{
-
   constructor(baseUrl, apiKey){
-
     this.baseUrl = baseUrl;
     this.apiKey = apiKey;
-
   }
-
   // get the cards from the server
   getCards(){
       return fetch(`${this.baseUrl}/cards`, {

@@ -2,9 +2,6 @@ import React from "react";
 
 const FormProfile = () => {
 
-
-
-
   return (
     <div className="form">
       <img className="form__close-button" src="images/close_icon.png" alt="close button"/>
