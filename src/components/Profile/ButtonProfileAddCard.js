@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import closeIcon from "../../images/close_icon.png";
 import "../../blocks/Form.sass";
+import PopupWithForm from "../Popups/PopupWithForm";
 
 const ButtonProfileAdd = ({ApiElement}) => {
 
@@ -8,11 +9,6 @@ const ButtonProfileAdd = ({ApiElement}) => {
 
   const handleClick = () => {
     setPopupAddImage(true);
-    console.log("click");
-  }
-
-  const handleCloseClick = () => {
-    setPopupAddImage(false);
   }
 
   const handleSubmit = (e) => {
@@ -27,10 +23,8 @@ const ButtonProfileAdd = ({ApiElement}) => {
   return (
     <>
       <button onClick={handleClick} className="profile__add">+</button>
-      {popupAddImage &&
-        <div className="form">
-          <img onClick={handleCloseClick} className="form__close-button" src={closeIcon} alt="close button"/>
 
+      <PopupWithForm popupStatus={popupAddImage} setPopupStatus={setPopupAddImage}>
 
           <form onSubmit={handleSubmit} className="form__container" noValidate>
             <h2 className="form__title">Añadir imagen</h2>
@@ -41,11 +35,10 @@ const ButtonProfileAdd = ({ApiElement}) => {
             <button className="form__submit" type="submit">Save</button>
           </form>
 
+      </PopupWithForm>
 
-        </div>}
-    </>
+    </>)
 
-  );
 }
 
 export default ButtonProfileAdd;

@@ -5,8 +5,6 @@ import ButtonProfileEdit from "./ButtonProfileEdit";
 import ButtonProfileAddCard from "./ButtonProfileAddCard";
 import "../../blocks/Profile.sass";
 
-
-
 const Profile = (props) => {
 
   const ApiElement = props.ApiElement

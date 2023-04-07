@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import closeIcon from "../../images/close_icon.png";
 import "../../blocks/Form.sass";
+import PopupWithForm from "../Popups/PopupWithForm";
 
 const ButtonProfileEdit = ({ApiElement, setUserObject}) => {
 
@@ -10,11 +11,6 @@ const ButtonProfileEdit = ({ApiElement, setUserObject}) => {
   const handleClick = () => {
     setPopupPerfil(true);
   }
-
-  const handleCloseClick = () => {
-    setPopupPerfil(false);
-  }
-
   function handleSubmit(event) {
     event.preventDefault(); // Prevents the form from submitting and refreshing the page
 
@@ -31,23 +27,19 @@ const ButtonProfileEdit = ({ApiElement, setUserObject}) => {
     });
 
   }
-
-
   return (
     <>
       <button onClick={handleClick} className="profile__edit"></button>
-      {popupPerfil &&
-        <div className="form">
-          <img onClick={handleCloseClick} className="form__close-button" src={closeIcon} alt="close button"/>
-            <form onSubmit={handleSubmit} className="form__container" >
-              <h2 className="form__title">Editar perfil</h2>
-              <input className="form__name" id="form__name" type="text" placeholder="Nombre" required/>
-              <span className="form__name-error form__error">field__name</span>
-              <input className="form__description" id="form__description" type="text" placeholder="Acerca de" required/>
-                <span className="form__description-error form__error">field__description</span>
-                <button className="form__submit" type="submit">Save</button>
-            </form>
-        </div>}
+      <PopupWithForm popupStatus={popupPerfil} setPopupStatus={setPopupPerfil}>
+          <form onSubmit={handleSubmit} className="form__container" >
+            <h2 className="form__title">Editar perfil</h2>
+            <input className="form__name" id="form__name" type="text" placeholder="Nombre" required/>
+            <span className="form__name-error form__error">field__name</span>
+            <input className="form__description" id="form__description" type="text" placeholder="Acerca de" required/>
+              <span className="form__description-error form__error">field__description</span>
+              <button className="form__submit" type="submit">Save</button>
+          </form>
+        </PopupWithForm>
     </>
   );
 }
