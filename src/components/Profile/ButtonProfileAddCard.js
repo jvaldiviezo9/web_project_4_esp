@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import closeIcon from "../../images/close_icon.png";
 import "../../blocks/Form.sass";
 import PopupWithForm from "../Popups/PopupWithForm";
 
